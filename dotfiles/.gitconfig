@@ -1,0 +1,23 @@
+# This is Git's per-user configuration file.
+[user]
+    name = Mike Perri
+    email = me@michaeljperri.com
+[push]
+    default = simple
+[pull]
+    rebase = true
+[alias]
+    d = "!f() { git $*; }; f"
+    st = status -s
+    ch = checkout
+    co = commit
+    br = "!git branch | grep \\* | awk '{print $NF}'"
+    pullr = pull --rebase
+    reset-origin = "!git fetch && git reset --hard origin/$(git symbolic-ref --short HEAD)"
+    unrm = "!COMMIT=$(git log -1 --pretty=%h -- \"$1\"); git checkout $COMMIT^ -- \"$1\"; echo \"File: $1, was restored from commit $COMMIT\"; git show -s $COMMIT"
+[core]
+    excludesfile = /Users/mperri/.gitignore_global
+[hub]
+    protocol = https
+[credential]
+    helper = osxkeychain
